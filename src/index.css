@@ -1,0 +1,111 @@
+@import "tailwindcss";
+
+@theme {
+  --color-void: #0a0a0b;
+  --color-charcoal: #121214;
+  --color-panel: #17171a;
+  --color-panel-2: #1d1d21;
+  --color-line: rgba(255, 255, 255, 0.08);
+  --color-bone: #ece8e1;
+  --color-ash: #8e8c88;
+  --color-amber: #e2a43c;
+  --color-amber-dim: rgba(226, 164, 60, 0.14);
+
+  --font-sans: "Archivo", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+
+html { background: var(--color-void); }
+
+body {
+  background: var(--color-void);
+  color: var(--color-bone);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+::selection { background: var(--color-amber); color: var(--color-void); }
+
+/* Display type — wide, heavy, uppercase */
+.display {
+  font-family: var(--font-sans);
+  font-stretch: 118%;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+  line-height: 0.92;
+}
+
+/* Mono signage labels */
+.signage {
+  font-family: var(--font-mono);
+  text-tnsform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: 0.6875rem;
+}
+
+/* Film grain overlay — kills the flat render look */
+.grain::after {
+  content: "";
+  position: fixed;
+  inset: -50%;
+  width: 200%;
+  height: 200%;
+  pointer-events: none;
+  z-index: 90;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Rubber gym floor texture */
+.rubber {
+  background-color: var(--color-charcoal);
+  background-image: radial-gradient(
+    circle at 1px 1px,
+    rgba(255, 255, 255, 0.035) 1px,
+    transparent 0
+  );
+  background-size: 14px 14px;
+}
+
+/* Rubber gym floor texture */
+.rubber {
+  background-color: var(--color-charcoal);
+  background-image: radial-gradient(
+    circle at 1px 1px,
+    rgba(255, 255, 255, 0.035) 1px,
+    transparent 0
+  );
+  background-size: 14px 14px;
+}
+
+/* Subtle floating gym dust */
+.dust {
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,0.25) 1px, transparent 1px),
+    radial-gradient(circle, rgba(226,164,60,0.18) 1px, transparent 1px);
+  background-size: 90px 90px, 130px 130px;
+  background-position: 0 0, 40px 60px;
+  animation: dustDrift 24s linear infinite;
+}
+
+@keyframes dustDrift {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-90px, -130px, 0); }
+}
+
+/* Reusable industrial edge highlight */
+.industrial-glow {
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.05),
+    inset 0 -1px 0 rgba(0,0,0,0.55),
+    0 0 60px rgba(226,164,60,0.06);
+}
